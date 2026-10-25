@@ -101,8 +101,8 @@ ol b{color:#f6dc8a;font-weight:500}
       if (!okPhone(phone)) { err.hidden = false; return; }
       var body = new URLSearchParams({ phone: phone, name: name, q: location.search.slice(1) });
       var sent = false;
-      try { sent = navigator.sendBeacon && navigator.sendBeacon("/api/paid", body); } catch (x) {}
-      if (!sent) { try { fetch("/api/paid", { method: "POST", body: body, keepalive: true }); } catch (x) {} }
+      try { sent = navigator.sendBeacon && navigator.sendBeacon("https://masa-crm.royaza1122.workers.dev/api/paid", body); } catch (x) {}
+      if (!sent) { try { fetch("https://masa-crm.royaza1122.workers.dev/api/paid", { method: "POST", body: body, keepalive: true }); } catch (x) {} }
       setTimeout(function () { location.href = GROUP; }, 150);
     });
   }
