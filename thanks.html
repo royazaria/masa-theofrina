@@ -59,11 +59,20 @@ h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw
 </script>
 <script src="/kenes-px.js"></script>
 <script>
-  // the sale, for Meta: one Purchase per Cardcom deal (the deal number is the event id, so a refresh is not a second sale)
-  // PRICE: the price of the offer sold at the conference. Change it here when the price changes.
-  var PRICE = 1444;
-  var deal = new URLSearchParams(location.search).get("internaldealnumber");
-  if (window.opx) opx("Purchase", { value: PRICE, currency: "ILS", content_name: "masa" }, deal ? "deal-" + deal : undefined);
+  // the sale, for Meta: one Purchase per Cardcom deal (the deal number is the event id, so a refresh is not a second sale).
+  // The value is the deal's real amount, asked from our server by its deal number: 1,444 for the group journey,
+  // 2,222 for the group journey with a 1:1 session of two hours (Roy, 27.10). No answer in 3 seconds: 1,444. No deal number: nothing.
+  (function () {
+    var deal = new URLSearchParams(location.search).get("internaldealnumber"), sent = false;
+    function buy(value, pkg) {
+      if (sent || !window.opx) return; sent = true;
+      opx("Purchase", { value: value, currency: "ILS", content_name: pkg || "masa" }, deal ? "deal-" + deal : undefined);
+    }
+    if (!deal) return;  // opened without a payment (a link, a test): no sale to report
+    fetch("/api/deal?n=" + encodeURIComponent(deal)).then(function (r) { return r.json(); })
+      .then(function (j) { if (j.ok) buy(j.amount, j.package); }).catch(function () {});
+    setTimeout(function () { buy(1444); }, 3000);
+  })();
 </script>
 </body>
 </html>
