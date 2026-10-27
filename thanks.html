@@ -21,8 +21,17 @@ body{background:var(--bg);color:var(--cream);font-family:Heebo,system-ui,sans-se
 .star{color:var(--g1);font-size:22px;letter-spacing:.4em}
 h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw,42px);line-height:1.25;margin:12px 0 6px;color:#f6dc8a}
 .sub{color:var(--muted);margin-bottom:22px}
-.next{font-size:18px;margin-bottom:14px}
-.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:440px;margin:0 auto 22px;background:linear-gradient(135deg,#f0cf78 0%,#d79a3b 45%,#a8324a 100%);color:#1a0a0e;font-weight:700;font-size:19px;padding:17px 26px;border-radius:999px;text-decoration:none}
+/* the one thing left to do, impossible to miss (Roy, 27.10): a step badge, a bouncing arrow, a WhatsApp-green button */
+.step{display:inline-block;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.5);color:#8ff0b4;font-weight:700;font-size:15px;border-radius:999px;padding:4px 14px;margin-bottom:10px}
+.next{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:clamp(21px,5.6vw,25px);line-height:1.4;color:var(--cream);margin-bottom:6px}
+.arrow{display:block;font-size:40px;line-height:1;color:#25d366;margin:4px 0 8px;animation:bounce 1.3s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.cta{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:440px;margin:0 auto 12px;background:#25d366;color:#04230f;font-weight:800;font-size:20px;padding:18px 26px;border-radius:999px;text-decoration:none;
+  box-shadow:0 0 0 6px rgba(37,211,102,.16),0 14px 34px -10px rgba(37,211,102,.7);animation:glow 2.4s ease-in-out infinite}
+.cta svg{width:28px;height:28px;flex:none}
+@keyframes glow{0%,100%{box-shadow:0 0 0 6px rgba(37,211,102,.14),0 14px 30px -10px rgba(37,211,102,.55)}50%{box-shadow:0 0 0 10px rgba(37,211,102,.22),0 14px 44px -8px rgba(37,211,102,.85)}}
+.hint{font-size:14.5px;color:var(--muted);margin-bottom:22px}
+@media (prefers-reduced-motion:reduce){.arrow,.cta{animation:none}}
 .ask{font-size:15px;color:var(--muted)}
 .ask a{color:#f6dc8a}
 </style>
@@ -32,8 +41,14 @@ h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw
   <div class="star">✦ ✦ ✦</div>
   <h1>נרשמת. ברוכה הבאה למסע.</h1>
   <p class="sub">תודה שבחרת בעצמך.</p>
-  <p class="next">הצעד הבא: להיכנס לקבוצת המסע בוואטסאפ. שם יוצא הכל.</p>
-  <a class="cta" href="https://chat.whatsapp.com/HwDLviljwQGGaCVhUtukBU" target="_blank" rel="noopener">✦ להצטרפות לקבוצת המסע</a>
+  <span class="step">נשאר עוד צעד אחד</span>
+  <p class="next">להיכנס לקבוצת המסע בוואטסאפ. שם יוצא הכל.</p>
+  <span class="arrow" aria-hidden="true">⬇</span>
+  <a class="cta" href="https://chat.whatsapp.com/HwDLviljwQGGaCVhUtukBU" target="_blank" rel="noopener">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3z"/><path fill="#25d366" d="M16 5.3c-5.9 0-10.7 4.7-10.7 10.5 0 2.3.7 4.4 2 6.2l-1.3 3.9 4-1.3c1.7 1.1 3.8 1.8 6 1.8 5.9 0 10.7-4.7 10.7-10.5S21.9 5.3 16 5.3z"/><path fill="#fff" d="M12.3 10.2c-.3-.6-.5-.6-.8-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.3 3.6 5.7 4.9 2.8 1.1 3.4.9 4 .8.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4l-2.1-1c-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-.9-2.3z"/></svg>
+    להצטרפות לקבוצת המסע
+  </a>
+  <p class="hint">לחיצה פותחת את וואטסאפ ומכניסה אותך לקבוצה.</p>
   <p class="ask">יש שאלה? כתבי למיתר בוואטסאפ: <a dir="ltr" href="https://wa.me/972557205011">055-720-5011</a></p>
 </main>
 <script>
