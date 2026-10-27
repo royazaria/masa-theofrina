@@ -6,10 +6,12 @@
 <title>נרשמת · מסע פתיחת הכוחות</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0e0507">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231c0509'/%3E%3Cpath d='M40 14a20 20 0 1 0 0 36a16 16 0 1 1 0-36z' fill='%23F0C46A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
+/* After the payment (Roy, 27.10): only the words and the way into the group. Name and phone come from the group itself. */
 :root{--bg:#0e0507;--card:#1f080d;--cream:#f4ece2;--muted:#c9b8ad;--g1:#e9b44c;--line:#3a1a1f}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--cream);font-family:Heebo,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.75;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px}
@@ -17,25 +19,8 @@ body{background:var(--bg);color:var(--cream);font-family:Heebo,system-ui,sans-se
 .star{color:var(--g1);font-size:22px;letter-spacing:.4em}
 h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw,42px);line-height:1.25;margin:12px 0 6px;color:#f6dc8a}
 .sub{color:var(--muted);margin-bottom:22px}
-/* the group button: shows by itself once GROUP is filled in */
-.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:440px;margin:0 auto 22px;background:linear-gradient(135deg,#f0cf78 0%,#d79a3b 45%,#a8324a 100%);color:#1a0a0e;font-weight:700;font-size:18px;padding:16px 26px;border-radius:999px;text-decoration:none}
-.cta[hidden]{display:none}
-/* the phone step before the group button (ASK_PHONE): the sheet learns who paid by card */
-.who{max-width:440px;margin:0 auto 22px}
-.who[hidden]{display:none}
-.who-t{color:#f6dc8a;font-weight:500;margin-bottom:10px}
-.who input{display:block;width:100%;margin:0 0 10px;padding:14px 18px;border-radius:14px;border:1px solid var(--line);background:#16060a;color:var(--cream);font:400 17px Heebo,system-ui,sans-serif;text-align:right}
-.who input::placeholder{color:#8f7c73}
-.who input:focus{outline:2px solid var(--g1);outline-offset:1px}
-.who .cta{border:0;cursor:pointer;margin:4px auto 8px;font-family:inherit}
-.who-s{font-size:14px;color:var(--muted)}
-.who-e{font-size:14px;color:#f0a0a0;margin-bottom:8px}
-ol{list-style:none;text-align:right;margin:0 auto 22px;max-width:440px}
-ol li{padding:10px 0;border-top:1px solid var(--line)}
-ol li:first-child{border-top:0}
-ol b{color:#f6dc8a;font-weight:500}
-.cal{display:block;font-size:15px;margin-top:4px}
-.cal a{color:#f6dc8a;font-weight:500}
+.next{font-size:18px;margin-bottom:14px}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:440px;margin:0 auto 22px;background:linear-gradient(135deg,#f0cf78 0%,#d79a3b 45%,#a8324a 100%);color:#1a0a0e;font-weight:700;font-size:19px;padding:17px 26px;border-radius:999px;text-decoration:none}
 .ask{font-size:15px;color:var(--muted)}
 .ask a{color:#f6dc8a}
 </style>
@@ -45,68 +30,13 @@ ol b{color:#f6dc8a;font-weight:500}
   <div class="star">✦ ✦ ✦</div>
   <h1>נרשמת. ברוכה הבאה למסע.</h1>
   <p class="sub">תודה שבחרת בעצמך.</p>
-  <a class="cta" id="group" target="_blank" rel="noopener" hidden>✦ להצטרפות לקבוצת המסע</a>
-  <form class="who" id="who" hidden novalidate>
-    <p class="who-t">צעד אחרון, ואת בקבוצה:</p>
-    <input id="who-name" name="name" type="text" autocomplete="name" placeholder="השם שלך" maxlength="60">
-    <input id="who-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="הטלפון שאיתו תצטרפי לקבוצה">
-    <p class="who-e" id="who-e" hidden>צריך מספר נייד ישראלי אמיתי: 10 ספרות שמתחילות ב-05.</p>
-    <button class="cta" type="submit">✦ להצטרפות לקבוצת המסע</button>
-    <p class="who-s">ככה נאשר אותך בקבוצת המסע.</p>
-  </form>
-  <ol>
-    <li id="s1"><b>1 ·</b> <span>תוך זמן קצר מגיעה אלייך הודעה ממני, עם הקישור לקבוצת המסע.</span></li>
-    <li><b>2 ·</b> כל החוברות, התפילות והמדיטציות נשלחות בקבוצת המסע, שבוע אחרי שבוע.</li>
-    <li><b>3 ·</b> נפגשות ביום ראשון, 1.11, ב-18:00, ועוד שלושה ימי ראשון אחריו. וכל מפגש מוקלט.
-      <span class="cal"><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D7%9E%D7%A1%D7%A2%20%D7%A4%D7%AA%D7%99%D7%97%D7%AA%20%D7%94%D7%9B%D7%95%D7%97%D7%95%D7%AA%20%C2%B7%20%D7%9E%D7%A4%D7%92%D7%A9%20%D7%97%D7%99%20%D7%A2%D7%9D%20%D7%A2%D7%A4%D7%A8%D7%99&amp;dates=20261101T180000%2F20261101T193000&amp;ctz=Asia%2FJerusalem&amp;recur=RRULE%3AFREQ%3DWEEKLY%3BCOUNT%3D4&amp;details=%D7%94%D7%A7%D7%99%D7%A9%D7%95%D7%A8%20%D7%9C%D7%96%D7%95%D7%9D%20%D7%99%D7%95%D7%A6%D7%90%20%D7%91%D7%A7%D7%91%D7%95%D7%A6%D7%AA%20%D7%94%D7%9E%D7%A1%D7%A2.%20%D7%9B%D7%9C%20%D7%9E%D7%A4%D7%92%D7%A9%20%D7%9E%D7%95%D7%A7%D7%9C%D7%98.&amp;location=%D7%96%D7%95%D7%9D" target="_blank" rel="noopener">הוספה ליומן גוגל</a> · <a href="/masa.ics">הוספה ליומן באייפון</a></span></li>
-  </ol>
-  <p class="ask">יש שאלה? כתבי לי בפרטי באינסטגרם, <a dir="ltr" href="https://ig.me/m/theofrina">@theofrina</a></p>
+  <p class="next">הצעד הבא: להיכנס לקבוצת המסע בוואטסאפ. שם יוצא הכל.</p>
+  <a class="cta" href="https://chat.whatsapp.com/HwDLviljwQGGaCVhUtukBU" target="_blank" rel="noopener">✦ להצטרפות לקבוצת המסע</a>
+  <p class="ask">יש שאלה? כתבי למיתר בוואטסאפ: <a dir="ltr" href="https://wa.me/972557205011">055-720-5011</a></p>
 </main>
 <script>
-(function () {
   // After a card payment inside the payment window on the page, this opens in that window: take over the whole tab.
-  if (window.top !== window.self) {
-    try { window.top.location.href = location.href; return; } catch (e) {}
-  }
-  // The invite link to the WhatsApp group of the journey. Fill it in and the button shows by itself.
-  var GROUP = "https://chat.whatsapp.com/HwDLviljwQGGaCVhUtukBU";  // the journey's community group (Roy, 20.10)
-  if (GROUP) {
-    var g = document.getElementById("group");
-    g.href = GROUP; g.hidden = false;
-    document.querySelector("#s1 span").textContent = "נכנסת לקבוצת המסע בוואטסאפ, בכפתור למעלה.";
-  }
-  // The phone step: before the group button she leaves her name and WhatsApp number, and /api/paid adds her to the
-  // sheet as paid by card (so Meitar doesn't call her). On since Roy's OK (21.10); false turns it off again.
-  var ASK_PHONE = true;
-  // A whole mobile number: 05XXXXXXXX, +972 5XXXXXXXX, or a number abroad written with +. A missing digit would
-  // become a key that matches nobody in the sheet.
-  // only a real Israeli mobile (Roy, 22.10), the same rule as the gate and the server (api/_lib.js, ilMobile)
-  function okPhone(v) {
-    var d = String(v || "").replace(/\D/g, "");
-    if (d.indexOf("00972") === 0) d = d.slice(2);
-    if (d.indexOf("972") === 0) d = "0" + d.slice(3);
-    if (!/^05[0-58]\d{7}$/.test(d)) return false;
-    var s = d.slice(3), seen = {};
-    for (var i = 0; i < s.length; i++) seen[s[i]] = 1;
-    return Object.keys(seen).length >= 3 && "01234567890".indexOf(s) < 0 && "09876543210".indexOf(s) < 0;
-  }
-  if (GROUP && (ASK_PHONE || /[?&]ask=1(&|$)/.test(location.search))) {
-    var form = document.getElementById("who"), err = document.getElementById("who-e");
-    document.getElementById("group").hidden = true;
-    form.hidden = false;
-    document.querySelector("#s1 span").textContent = "משאירה שם וטלפון, ונכנסת לקבוצת המסע בוואטסאפ.";
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var phone = document.getElementById("who-phone").value, name = document.getElementById("who-name").value;
-      if (!okPhone(phone)) { err.hidden = false; return; }
-      var body = new URLSearchParams({ phone: phone, name: name, q: location.search.slice(1) });
-      var sent = false;
-      try { sent = navigator.sendBeacon && navigator.sendBeacon("https://masa-crm.royaza1122.workers.dev/api/paid", body); } catch (x) {}
-      if (!sent) { try { fetch("https://masa-crm.royaza1122.workers.dev/api/paid", { method: "POST", body: body, keepalive: true }); } catch (x) {} }
-      setTimeout(function () { location.href = GROUP; }, 150);
-    });
-  }
-})();
+  if (window.top !== window.self) { try { window.top.location.href = location.href; } catch (e) {} }
 </script>
 </body>
 </html>
