@@ -57,5 +57,13 @@ h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw
   // After a card payment inside the payment window on the page, this opens in that window: take over the whole tab.
   if (window.top !== window.self) { try { window.top.location.href = location.href; } catch (e) {} }
 </script>
+<script src="/kenes-px.js"></script>
+<script>
+  // the sale, for Meta: one Purchase per Cardcom deal (the deal number is the event id, so a refresh is not a second sale)
+  // PRICE: the price of the offer sold at the conference. Change it here when the price changes.
+  var PRICE = 1444;
+  var deal = new URLSearchParams(location.search).get("internaldealnumber");
+  if (window.opx) opx("Purchase", { value: PRICE, currency: "ILS", content_name: "masa" }, deal ? "deal-" + deal : undefined);
+</script>
 </body>
 </html>
