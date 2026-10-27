@@ -34,6 +34,7 @@ h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw
 @keyframes glow{0%,100%{box-shadow:0 0 0 6px rgba(37,211,102,.14),0 14px 30px -10px rgba(37,211,102,.55)}50%{box-shadow:0 0 0 10px rgba(37,211,102,.22),0 14px 44px -8px rgba(37,211,102,.85)}}
 .hint{font-size:14.5px;color:var(--muted);margin-bottom:22px}
 .two{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.cal-box{min-height:40px;border-radius:16px;overflow:hidden}
 .ig{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:440px;margin:0 auto 12px;white-space:nowrap;color:#fff;font-weight:800;font-size:clamp(15px,4.3vw,19px);padding:18px 14px;border-radius:999px;text-decoration:none;background:linear-gradient(45deg,#f9a33b 0%,#e8406b 45%,#a43ec7 100%);box-shadow:0 14px 34px -10px rgba(232,64,107,.65)}
 .ig svg{width:26px;height:26px;flex:none}
 @media (prefers-reduced-motion:reduce){.arrow,.cta{animation:none}}
@@ -55,13 +56,12 @@ h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(30px,8vw
   </a>
   <p class="hint">לחיצה פותחת את וואטסאפ ומכניסה אותך לקבוצה.</p>
   <div class="two">
-    <p class="next">2 · לקבוע את הפגישה האישית שלך עם עפרי</p>
-    <p class="hint">כתבי לה בפרטי "נרשמתי למסע עם הפגישה האישית", ותקבעו יחד את הזמן.</p>
+    <p class="next">2 · לקבוע את הפגישה שלנו, רק את ואני</p>
+    <p class="hint">בחרי זמן שנוח לך. הפגישה מוקלטת ונשארת אצלך.</p>
     <span class="arrow" aria-hidden="true">⬇</span>
-    <a class="ig" href="https://ig.me/m/theofrina" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.4" fill="#fff"/></svg>
-      לכתוב לעפרי בפרטי באינסטגרם
-    </a>
+    <!-- CALENDLY: Ofri's embed goes here (Roy sends the snippet) -->
+    <div id="calendly" class="cal-box"></div>
+    <p class="next" style="font-size:18px;margin-top:14px">אחרי שקבעת, כתבי לי בפרטי "קבעתי" 💛</p>
   </div>
   <p class="ask">יש שאלה? כתבי למיתר בוואטסאפ: <a dir="ltr" href="https://wa.me/972557205011">055-720-5011</a></p>
 </main>
